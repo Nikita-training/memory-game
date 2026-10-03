@@ -1,4 +1,70 @@
-.game-field {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(82, 144, 165);
+}
+
+.main-container {
+  max-width: 1000px;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+}
+.main-container header {
+  padding: 12px 24px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #285763;
+  border-radius: 25px;
+}
+.main-container header button {
+  height: 40px;
+  width: 150px;
+  padding: 8px 16px;
+  border-radius: 15px;
+}
+.main-container h1 {
+  font-size: 20px;
+  text-align: center;
+  padding: 20px 0;
+}
+.main-container .game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.main-container .game-container .stats-container {
+  max-width: 50%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+.main-container .game-container .game-field {
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px;
   display: grid;
   grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  gap: 10px;
+}
+.main-container .game-container .game-field .card {
+  border: 2px solid black;
+  border-radius: 2px solid red;
+  background-color: white;
+  border-radius: 20px;
+}
+.main-container .game-container .game-field .card img {
+  height: 100px;
+  padding: 5px;
 }/*# sourceMappingURL=style.css.map */

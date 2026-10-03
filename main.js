@@ -75,10 +75,7 @@ async function fillCards(cards) {
         img.alt = item.name
         img.loading = 'lazy'
 
-        const label = document.createElement('span')
-        label.textContent = item.name
-
-        card.append(img, label)
+        card.append(img)
         container.append(card)
     })
 }
