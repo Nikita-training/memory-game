@@ -1,9 +1,8 @@
 async function prepareGame(){
 
     const cards = await loadCards()
-    let fullSet = [...cards,...cards,...cards,...cards]
     pageRenderer()
-    fillCards(fullSet)
+    fillCards(cards)
 
 }
 
@@ -62,11 +61,12 @@ async function loadCards(){
 }
 
 async function fillCards(cards) {
+    const array = shuffle(cards)
 
     const container = document.querySelector('.game-field')
     container.replaceChildren()
 
-    cards.forEach(item => {
+    array.forEach(item => {
         const card = document.createElement('div')
         card.className = 'card'
 
@@ -83,4 +83,16 @@ async function fillCards(cards) {
     })
 }
 
+function shuffle(cards) {
+    const arr = [...cards, ...cards]
+
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+    }
+
+    return arr
+}
+
 prepareGame()
+
