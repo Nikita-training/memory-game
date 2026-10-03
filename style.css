@@ -67,4 +67,12 @@ body {
 .main-container .game-container .game-field .card img {
   height: 100px;
   padding: 5px;
+  visibility: hidden;
+}
+.main-container .game-container .game-field .card.visible img {
+  visibility: visible;
+}
+.main-container .game-container .game-field .card.completed {
+  pointer-events: none;
+  visibility: hidden;
 }/*# sourceMappingURL=style.css.map */

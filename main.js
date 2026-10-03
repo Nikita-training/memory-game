@@ -1,4 +1,8 @@
-async function prepareGame(){
+let firstCard = null
+let timeout = false
+
+
+async function prepareGame() {
 
     const cards = await loadCards()
     pageRenderer()
@@ -54,7 +58,7 @@ function pageRenderer() {
     document.body.append(container)
 }
 
-async function loadCards(){
+async function loadCards() {
     const response = await fetch('./cards.json')
     const items = await response.json()
     return items
@@ -69,6 +73,7 @@ async function fillCards(cards) {
     array.forEach(item => {
         const card = document.createElement('div')
         card.className = 'card'
+        card.dataset.name = item.name
 
         const img = document.createElement('img')
         img.src = item.path
@@ -77,6 +82,9 @@ async function fillCards(cards) {
 
         card.append(img)
         container.append(card)
+        card.addEventListener('click', () => {
+            flip(card)
+        })
     })
 }
 
@@ -89,6 +97,34 @@ function shuffle(cards) {
     }
 
     return arr
+}
+
+function flip(card) {
+    if(timeout) return
+    if (firstCard === null) {
+        firstCard = card
+        card.classList.add('visible')
+    }
+    else {
+        card.classList.add('visible')
+        checkCards(card)
+    }
+}
+
+function checkCards(secondCard) {
+
+    const result = firstCard.dataset.name === secondCard.dataset.name
+    if (!result) {
+        timeout = true
+        setTimeout(() => {
+            firstCard.classList.remove('visible')
+            secondCard.classList.remove('visible')
+            firstCard = null
+            timeout = false
+        }, 1500);
+    }
+    else firstCard = null
+    
 }
 
 prepareGame()
