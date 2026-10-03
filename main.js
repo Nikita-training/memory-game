@@ -1,3 +1,12 @@
+async function prepareGame(){
+
+    const cards = await loadCards()
+    let fullSet = [...cards,...cards,...cards,...cards]
+    pageRenderer()
+    fillCards(fullSet)
+
+}
+
 function pageRenderer() {
     const container = document.createElement('div')
     container.className = 'main-container'
@@ -46,4 +55,32 @@ function pageRenderer() {
     document.body.append(container)
 }
 
-pageRenderer()
+async function loadCards(){
+    const response = await fetch('./cards.json')
+    const items = await response.json()
+    return items
+}
+
+async function fillCards(cards) {
+
+    const container = document.querySelector('.game-field')
+    container.replaceChildren()
+
+    cards.forEach(item => {
+        const card = document.createElement('div')
+        card.className = 'card'
+
+        const img = document.createElement('img')
+        img.src = item.path
+        img.alt = item.name
+        img.loading = 'lazy'
+
+        const label = document.createElement('span')
+        label.textContent = item.name
+
+        card.append(img, label)
+        container.append(card)
+    })
+}
+
+prepareGame()
