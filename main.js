@@ -3,7 +3,9 @@ class Game {
     constructor() {
         this.firstCard = null
         this.moves = null
+        this.moveCounter = 0
         this.progress = null
+        this.progressCounter = 0
         this.gameField = null
         this.timeout = false
         this.cards = null
@@ -52,11 +54,11 @@ class Game {
 
         const moves = document.createElement('span')
         moves.className = 'moves'
-        moves.textContent = '0'
+        moves.textContent = 'Количество ходов: 0'
 
         const progress = document.createElement('span')
         progress.className = 'progress'
-        progress.textContent = '0 / 8'
+        progress.textContent = 'Текущий прогресс 0 / 8'
 
         statsContainer.append(moves, progress)
 
@@ -120,6 +122,8 @@ class Game {
     }
 
     checkCards(secondCard) {
+        this.moveCounter +=1
+        this.moves.textContent = `Количество ходов: ${this.moveCounter}`
         const result = this.firstCard.dataset.name === secondCard.dataset.name
         if (!result) {
             this.timeout = true
@@ -131,53 +135,13 @@ class Game {
             }, 1500);
         }
         else {
+            this.progressCounter +=1
+            this.progress.textContent = `Текущий прогресс ${this.progressCounter} / 8`
             this.firstCard.classList.add('completed')
             secondCard.classList.add('completed')
             this.firstCard = null
         }
     }
-}
-
-async function initGame() {
-    let firstCard = null
-    let timeout = false
-
-    const cards = await loadCards()
-    const { moves, progress, gameField } = pageRenderer()
-    fillCards(cards)
-
-
-
-    function flip(card) {
-        if (timeout || card === firstCard) return
-        if (firstCard === null) {
-            firstCard = card
-            card.classList.add('visible')
-        }
-        else {
-            card.classList.add('visible')
-            checkCards(card)
-        }
-    }
-
-    function checkCards(secondCard) {
-        const result = firstCard.dataset.name === secondCard.dataset.name
-        if (!result) {
-            timeout = true
-            setTimeout(() => {
-                firstCard.classList.remove('visible')
-                secondCard.classList.remove('visible')
-                firstCard = null
-                timeout = false
-            }, 1500);
-        }
-        else {
-            firstCard.classList.add('completed')
-            secondCard.classList.add('completed')
-            firstCard = null
-        }
-    }
-
 }
 
 game = new Game()
