@@ -100,7 +100,7 @@ function shuffle(cards) {
 }
 
 function flip(card) {
-    if(timeout) return
+    if (timeout || card===firstCard) return
     if (firstCard === null) {
         firstCard = card
         card.classList.add('visible')
@@ -123,8 +123,12 @@ function checkCards(secondCard) {
             timeout = false
         }, 1500);
     }
-    else firstCard = null
-    
+    else {
+        firstCard.classList.add('completed')
+        secondCard.classList.add('completed')
+        firstCard = null
+    } 
+
 }
 
 prepareGame()

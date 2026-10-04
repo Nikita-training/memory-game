@@ -6,6 +6,7 @@
 
 body {
     background-color: rgb(82, 144, 165);
+    user-select: none;
 }
 
 .main-container {
@@ -87,7 +88,6 @@ body {
 
                 &.completed {
                     pointer-events: none;
-                    visibility: hidden;
                 }
 
             }

@@ -6,6 +6,9 @@
 
 body {
   background-color: rgb(82, 144, 165);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .main-container {
@@ -74,5 +77,4 @@ body {
 }
 .main-container .game-container .game-field .card.completed {
   pointer-events: none;
-  visibility: hidden;
 }/*# sourceMappingURL=style.css.map */
