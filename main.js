@@ -11,9 +11,15 @@ class Game {
     }
 
     async initGame() {
-        this.cards = await loadCards()
+        this.cards = await this.loadCards()
         Object.assign(this, this.pageRenderer());
         this.fillCards(this.cards)
+    }
+
+    async loadCards() {
+        const response = await fetch('./cards.json')
+        const items = await response.json()
+        return items
     }
 
     pageRenderer() {
@@ -67,7 +73,7 @@ class Game {
     }
 
     fillCards() {
-        const array = shuffle(this.cards)
+        const array = this.shuffle(this.cards)
 
         const container = document.querySelector('.game-field')
         container.replaceChildren()
@@ -130,6 +136,48 @@ class Game {
             this.firstCard = null
         }
     }
+}
+
+async function initGame() {
+    let firstCard = null
+    let timeout = false
+
+    const cards = await loadCards()
+    const { moves, progress, gameField } = pageRenderer()
+    fillCards(cards)
+
+
+
+    function flip(card) {
+        if (timeout || card === firstCard) return
+        if (firstCard === null) {
+            firstCard = card
+            card.classList.add('visible')
+        }
+        else {
+            card.classList.add('visible')
+            checkCards(card)
+        }
+    }
+
+    function checkCards(secondCard) {
+        const result = firstCard.dataset.name === secondCard.dataset.name
+        if (!result) {
+            timeout = true
+            setTimeout(() => {
+                firstCard.classList.remove('visible')
+                secondCard.classList.remove('visible')
+                firstCard = null
+                timeout = false
+            }, 1500);
+        }
+        else {
+            firstCard.classList.add('completed')
+            secondCard.classList.add('completed')
+            firstCard = null
+        }
+    }
+
 }
 
 game = new Game()
