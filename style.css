@@ -43,6 +43,7 @@ body .no-scroll {
   padding: 20px 0;
 }
 .main-container .game-container {
+  color: white;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -69,11 +70,15 @@ body .no-scroll {
   border-radius: 2px solid red;
   background-color: white;
   border-radius: 20px;
+  background-image: url(./icons/bg.jpg);
 }
 .main-container .game-container .game-field .card img {
   height: 100px;
   padding: 5px;
   visibility: hidden;
+}
+.main-container .game-container .game-field .card.visible {
+  background-image: none;
 }
 .main-container .game-container .game-field .card.visible img {
   visibility: visible;
