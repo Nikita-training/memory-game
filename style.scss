@@ -7,6 +7,9 @@
 body {
     background-color: rgb(82, 144, 165);
     user-select: none;
+    .no-scroll{
+        overflow: hidden;
+    }
 }
 
 .main-container {

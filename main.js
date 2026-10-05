@@ -11,6 +11,7 @@ class Game {
         this.timer = null
         this.overlay = null
         this.modalContainer = null
+        this.resultSaved = false
     }
 
     async initGame() {
@@ -81,6 +82,9 @@ class Game {
         // handlers
         startBtn.addEventListener('click', () => this.newGame())
         leaderBtn.addEventListener('click', () => this.showLeaderboardModal())
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.closeModal()
+        })
 
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) this.closeModal()
@@ -92,10 +96,12 @@ class Game {
     openModal(content) {
         this.modalContainer.replaceChildren(content)
         this.overlay.classList.add('visible')
+        document.body.classList.add('no-scroll')
     }
 
     closeModal() {
         this.overlay.classList.remove('visible')
+        document.body.classList.remove('no-scroll')
     }
 
     showWinModal() {
@@ -237,6 +243,7 @@ class Game {
     }
 
     newGame() {
+        this.closeModal()
         if (this.timer !== null) {
             clearTimeout(this.timer)
             this.timer = null
@@ -280,6 +287,7 @@ class Game {
     flip(card) {
         if (this.timeout || card === this.firstCard) return
         if (card.classList.contains('completed')) return
+        if (card.classList.contains('visible')) return
 
         if (this.firstCard === null) {
             this.firstCard = card
