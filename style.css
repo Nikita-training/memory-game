@@ -10,7 +10,7 @@ body {
      -moz-user-select: none;
           user-select: none;
 }
-body .no-scroll {
+body.no-scroll {
   overflow: hidden;
 }
 
