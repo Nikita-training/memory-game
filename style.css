@@ -5,7 +5,9 @@
 }
 
 body {
-  background-color: rgb(82, 144, 165);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background-color: #5a9fb5;
+  color: #1f2d33;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -36,14 +38,26 @@ body.no-scroll {
   width: 150px;
   padding: 8px 16px;
   border-radius: 15px;
+  background-color: #ffffff;
+  color: #285763;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.main-container header button:hover {
+  background-color: #d9a86c;
+  color: #ffffff;
 }
 .main-container h1 {
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 600;
   text-align: center;
-  padding: 20px 0;
+  padding: 24px 0;
+  color: #ffffff;
 }
 .main-container .game-container {
-  color: white;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -55,9 +69,10 @@ body.no-scroll {
   margin: auto;
   display: flex;
   justify-content: space-around;
+  font-size: 16px;
 }
 .main-container .game-container .game-field {
-  border: 2px solid black;
+  border: 2px solid #285763;
   border-radius: 20px;
   padding: 20px;
   display: grid;
@@ -66,15 +81,21 @@ body.no-scroll {
   gap: 10px;
 }
 .main-container .game-container .game-field .card {
-  border: 2px solid black;
-  border-radius: 2px solid red;
-  background-color: white;
+  width: 110px;
+  height: 130px;
+  border: 2px solid #285763;
   border-radius: 20px;
+  background-color: #ffffff;
   background-image: url(./icons/bg.jpg);
+  background-size: cover;
+  background-position: center;
 }
 .main-container .game-container .game-field .card img {
-  height: 100px;
+  width: 100%;
+  height: 100%;
   padding: 5px;
+  -o-object-fit: contain;
+     object-fit: contain;
   visibility: hidden;
 }
 .main-container .game-container .game-field .card.visible {
@@ -107,72 +128,6 @@ body.no-scroll {
   pointer-events: auto;
 }
 
-.modal-win {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
-  color: #222222;
-}
-.modal-win h2 {
-  margin: 0 0 12px;
-  font-size: 24px;
-}
-.modal-win p {
-  margin: 0 0 24px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-.modal-new-game,
-.modal-close {
-  padding: 12px 24px;
-  border-radius: 100px;
-  border: 1px solid #cccccc;
-  background: transparent;
-  color: #222222;
-  cursor: pointer;
-  font: inherit;
-  transition: background-color 0.2s;
-}
-.modal-new-game:hover,
-.modal-close:hover {
-  background: #285763;
-  color: #ffffff;
-}
-
-.modal-new-game {
-  background: #285763;
-  color: #ffffff;
-  border-color: transparent;
-}
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.2s, visibility 0.2s;
-}
-.modal-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
 .modal {
   background: #ffffff;
   border-radius: 20px;
@@ -180,15 +135,55 @@ body.no-scroll {
   max-width: 400px;
   width: 100%;
   text-align: center;
-  color: #222222;
+  color: #1f2d33;
 }
 
 .modal-win h2 {
   margin: 0 0 12px;
   font-size: 24px;
+  font-weight: 700;
+  color: #285763;
 }
 .modal-win p {
   margin: 0 0 24px;
+  font-size: 16px;
+}
+
+.modal-leaderboard h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #285763;
+}
+.modal-leaderboard .content {
+  margin: 0 0 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.modal-leaderboard .empty {
+  color: #6b7a80;
+  font-size: 16px;
+  padding: 20px 0;
+}
+.modal-leaderboard .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.modal-leaderboard .table th,
+.modal-leaderboard .table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #d9e3e7;
+}
+.modal-leaderboard .table th {
+  font-weight: 600;
+  color: #285763;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.modal-leaderboard .table tr:last-child td {
+  border-bottom: none;
 }
 
 .modal-actions {
@@ -201,81 +196,27 @@ body.no-scroll {
 .modal-close {
   padding: 12px 24px;
   border-radius: 100px;
-  border: 1px solid #cccccc;
+  border: 1px solid #d9e3e7;
   background: transparent;
-  color: #222222;
+  color: #1f2d33;
   cursor: pointer;
   font: inherit;
-  transition: background-color 0.2s;
+  font-size: 15px;
+  font-weight: 600;
 }
 .modal-new-game:hover,
 .modal-close:hover {
   background: #285763;
   color: #ffffff;
+  border-color: #285763;
 }
 
 .modal-new-game {
   background: #285763;
   color: #ffffff;
-  border-color: transparent;
+  border-color: #285763;
 }
-
-.modal-leaderboard {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
-  color: #222222;
-}
-.modal-leaderboard h2 {
-  margin: 0 0 20px;
-  font-size: 24px;
-}
-.modal-leaderboard .content {
-  margin: 0 0 24px;
-  max-height: 400px;
-  overflow-y: auto;
-}
-.modal-leaderboard .empty {
-  color: #666;
-  font-size: 16px;
-  padding: 20px 0;
-}
-.modal-leaderboard .table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.modal-leaderboard .table th,
-.modal-leaderboard .table td {
-  padding: 8px 12px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-.modal-leaderboard .table th {
-  font-weight: 600;
-  color: #285763;
-  font-size: 13px;
-  text-transform: uppercase;
-}
-.modal-leaderboard .table td {
-  font-size: 15px;
-}
-.modal-leaderboard .table tr:last-child td {
-  border-bottom: none;
-}
-.modal-leaderboard .modal-close {
-  padding: 12px 24px;
-  border-radius: 100px;
-  border: 1px solid #cccccc;
-  background: transparent;
-  color: #222222;
-  cursor: pointer;
-  font: inherit;
-  transition: background-color 0.2s;
-}
-.modal-leaderboard .modal-close:hover {
-  background: #285763;
-  color: #ffffff;
+.modal-new-game:hover {
+  background: #d9a86c;
+  border-color: #d9a86c;
 }/*# sourceMappingURL=style.css.map */
