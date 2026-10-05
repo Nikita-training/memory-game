@@ -1,34 +1,34 @@
 [
   {
     "name": "Angular",
-    "path": "/icons/angular.svg"
+    "path": "./icons/angular.svg"
   },
   {
     "name": "Nest",
-    "path": "/icons/nestjs.svg"
+    "path": "./icons/nestjs.svg"
   },
   {
     "name": "Next",
-    "path": "/icons/nextjs.svg"
+    "path": "./icons/nextjs.svg"
   },
   {
     "name": "Nuxt",
-    "path": "/icons/nuxt.svg"
+    "path": "./icons/nuxt.svg"
   },
   {
     "name": "Qwik",
-    "path": "/icons/qwik.svg"
+    "path": "./icons/qwik.svg"
   },
   {
     "name": "React",
-    "path": "/icons/react.svg"
+    "path": "./icons/react.svg"
   },
   {
     "name": "Svelte",
-    "path": "/icons/svelte.svg"
+    "path": "./icons/svelte.svg"
   },
   {
     "name": "Vue",
-    "path": "/icons/vuejs.svg"
+    "path": "./icons/vuejs.svg"
   }
 ]
