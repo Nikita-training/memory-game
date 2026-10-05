@@ -16,7 +16,8 @@
     "path": "./icons/Nuxt.svg"
   },
   {
-    "name": "Qwik"
+    "name": "Qwik",
+    "path": "./icons/Qwik.svg"
   },
   {
     "name": "React",
