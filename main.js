@@ -312,7 +312,7 @@ class Game {
                 this.firstCard = null
                 this.timeout = false
                 this.timer = null
-            }, 1500)
+            }, 1000)
             return
         }
 
