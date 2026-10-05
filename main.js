@@ -80,6 +80,7 @@ class Game {
 
         // handlers
         startBtn.addEventListener('click', () => this.newGame())
+        leaderBtn.addEventListener('click', () => this.showLeaderboardModal())
 
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) this.closeModal()
@@ -98,6 +99,8 @@ class Game {
     }
 
     showWinModal() {
+        this.saveResult()
+
         const modal = document.createElement('div')
         modal.className = 'modal-win'
 
@@ -129,12 +132,117 @@ class Game {
         this.openModal(modal)
     }
 
+    showLeaderboardModal() {
+        const modal = document.createElement('div')
+        modal.className = 'modal-leaderboard'
+
+        const title = document.createElement('h2')
+        title.textContent = '🏆 Таблица лидеров'
+
+        const content = document.createElement('div')
+        content.className = 'content'
+
+        const results = this.getResults()
+
+        if (results.length === 0) {
+            const empty = document.createElement('p')
+            empty.className = 'empty'
+            empty.textContent = 'Пока нет результатов'
+            content.append(empty)
+        } else {
+            const table = document.createElement('table')
+            table.className = 'table'
+
+            const thead = document.createElement('thead')
+            const headRow = document.createElement('tr')
+
+            const thPlace = document.createElement('th')
+            thPlace.textContent = 'Место'
+
+            const thMoves = document.createElement('th')
+            thMoves.textContent = 'Ходы'
+
+            const thDate = document.createElement('th')
+            thDate.textContent = 'Дата'
+
+            headRow.append(thPlace, thMoves, thDate)
+            thead.append(headRow)
+
+            const tbody = document.createElement('tbody')
+            results.forEach((result, i) => {
+                const tr = document.createElement('tr')
+
+                const place = document.createElement('td')
+                place.textContent = String(i + 1)
+
+                const moves = document.createElement('td')
+                moves.textContent = String(result.moves)
+
+                const date = document.createElement('td')
+                date.textContent = result.date
+
+                tr.append(place, moves, date)
+                tbody.append(tr)
+            })
+
+            table.append(thead, tbody)
+            content.append(table)
+        }
+
+        const closeBtn = document.createElement('button')
+        closeBtn.className = 'modal-close'
+        closeBtn.textContent = 'Закрыть'
+        closeBtn.addEventListener('click', () => this.closeModal())
+
+        modal.append(title, content, closeBtn)
+        this.openModal(modal)
+    }
+
+    getResults() {
+        try {
+            const raw = localStorage.getItem('memory_game_results')
+            if (!raw) return []
+            const parsed = JSON.parse(raw)
+            return Array.isArray(parsed) ? parsed : []
+        } catch {
+            return []
+        }
+    }
+
+    saveResult() {
+        if (this.resultSaved) return
+
+        const date = new Date()
+        const dd = String(date.getDate()).padStart(2, '0')
+        const mm = String(date.getMonth() + 1).padStart(2, '0')
+        const yyyy = date.getFullYear()
+        const dateStr = `${dd}.${mm}.${yyyy}`
+
+        const results = this.getResults()
+        results.push({
+            moves: this.moveCounter,
+            date: dateStr,
+            timestamp: Date.now(),
+        })
+
+        results.sort((a, b) => {
+            if (a.moves !== b.moves) return a.moves - b.moves
+            return a.timestamp - b.timestamp
+        })
+
+        const top10 = results.slice(0, 10)
+        localStorage.setItem('memory_game_results', JSON.stringify(top10))
+
+        this.resultSaved = true
+    }
+
     newGame() {
         if (this.timer !== null) {
             clearTimeout(this.timer)
             this.timer = null
         }
         this.timeout = false
+        this.resultSaved = false
         this.firstCard = null
         this.moveCounter = 0
         this.moves.textContent = `Количество ходов: ${this.moveCounter}`
