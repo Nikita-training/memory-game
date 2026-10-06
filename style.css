@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background-color: #5a9fb5;
+  color: #1f2d33;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+.main-container {
+  max-width: 1000px;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+}
+.main-container header {
+  padding: 12px 24px;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #285763;
+  border-radius: 25px;
+}
+.main-container header button {
+  height: 40px;
+  width: 150px;
+  padding: 8px 16px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  color: #285763;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.main-container header button:hover {
+  background-color: #d9a86c;
+  color: #ffffff;
+}
+.main-container h1 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  padding: 24px 0;
+  color: #ffffff;
+}
+.main-container .game-container {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.main-container .game-container .stats-container {
+  max-width: 50%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+}
+.main-container .game-container .game-field {
+  border: 2px solid #285763;
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  gap: 10px;
+}
+.main-container .game-container .game-field .card {
+  width: 110px;
+  height: 130px;
+  border: 2px solid #285763;
+  border-radius: 20px;
+  background-color: #ffffff;
+  background-image: url(./icons/bg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.main-container .game-container .game-field .card img {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  visibility: hidden;
+}
+.main-container .game-container .game-field .card.visible {
+  background-image: none;
+}
+.main-container .game-container .game-field .card.visible img {
+  visibility: visible;
+}
+.main-container .game-container .game-field .card.completed {
+  pointer-events: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  color: #1f2d33;
+}
+
+.modal-win h2 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #285763;
+}
+.modal-win p {
+  margin: 0 0 24px;
+  font-size: 16px;
+}
+
+.modal-leaderboard h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #285763;
+}
+.modal-leaderboard .content {
+  margin: 0 0 24px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.modal-leaderboard .empty {
+  color: #6b7a80;
+  font-size: 16px;
+  padding: 20px 0;
+}
+.modal-leaderboard .table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.modal-leaderboard .table th,
+.modal-leaderboard .table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #d9e3e7;
+}
+.modal-leaderboard .table th {
+  font-weight: 600;
+  color: #285763;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+.modal-leaderboard .table tr:last-child td {
+  border-bottom: none;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-new-game,
+.modal-close {
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1px solid #d9e3e7;
+  background: transparent;
+  color: #1f2d33;
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+}
+.modal-new-game:hover,
+.modal-close:hover {
+  background: #285763;
+  color: #ffffff;
+  border-color: #285763;
+}
+
+.modal-new-game {
+  background: #285763;
+  color: #ffffff;
+  border-color: #285763;
+}
+.modal-new-game:hover {
+  background: #d9a86c;
+  border-color: #d9a86c;
+}/*# sourceMappingURL=style.css.map */

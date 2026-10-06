@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Angular",
+    "path": "./icons/Angular.svg"
+  },
+  {
+    "name": "Nest",
+    "path": "./icons/Nestjs.svg"
+  },
+  {
+    "name": "Next",
+    "path": "./icons/Nextjs.svg"
+  },
+  {
+    "name": "Nuxt",
+    "path": "./icons/Nuxt.svg"
+  },
+  {
+    "name": "Qwik",
+    "path": "./icons/Qwik.svg"
+  },
+  {
+    "name": "React",
+    "path": "./icons/React.svg"
+  },
+  {
+    "name": "Svelte",
+    "path": "./icons/Svelte.svg"
+  },
+  {
+    "name": "Vue",
+    "path": "./icons/Vuejs.svg"
+  }
+]
